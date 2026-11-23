@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Avata</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Layout idea: one dark canopy page, a wide hero with the helminth diagram beside the statement,
+   and a short row of what we do. Text is ivory. Palette is used lightly: Sand for the diagram,
+   Sun for the accent, River and Laterite only in the diagram. */
+:root{
+  --canopy:#161C15;
+  --ivory:#F1EDE2;
+  --sand:#EAE0C4;
+  --sun:#EECC33;
+  --sage:#B5B6A3;
+  --laterite:#B3331A;
+  --river:#22468A;
+  --muted:#A09B87;
+  --line:rgba(234,224,196,.16);
+  --font-display:"Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono:"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--canopy)}
+body{color:var(--ivory);font-family:var(--font-display);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+svg{display:block;max-width:100%}
+:focus-visible{outline:2px solid var(--sage);outline-offset:3px;border-radius:4px}
+
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+.label{font-family:var(--font-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+
+/* Top bar */
+header.top{border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;align-items:center;height:68px}
+.wordmark{font-weight:600;font-size:20px;letter-spacing:.2em;text-transform:uppercase;color:var(--ivory)}
+
+/* Hero */
+.hero{padding:112px 0 96px}
+.hero .wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:64px;align-items:center}
+h1{font-weight:500;font-size:clamp(42px,5.6vw,76px);line-height:1.04;letter-spacing:-.025em;text-wrap:balance}
+.lede{margin-top:28px;font-size:19px;color:var(--muted);max-width:31em}
+.figure{width:100%;max-width:540px;aspect-ratio:1/1;justify-self:center}
+.figure svg{width:100%;height:100%}
+.crawl{animation:crawl 1.6s linear infinite}
+.flow{stroke-dasharray:4 7;animation:flow 2.4s linear infinite}
+@keyframes crawl{to{stroke-dashoffset:-16}}
+@keyframes flow{to{stroke-dashoffset:-22}}
+@media (prefers-reduced-motion: reduce){.crawl,.flow{animation:none}}
+
+/* What we do */
+.do{padding:0 0 112px}
+.do-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line)}
+.do-item{padding:32px 36px 0 0;margin-right:36px;border-right:1px solid var(--line)}
+.do-item:last-child{border-right:0;margin-right:0}
+.do-item .n{font-family:var(--font-mono);font-size:13px;color:var(--sage)}
+.do-item h2{font-weight:500;font-size:26px;letter-spacing:-.01em;margin:18px 0 12px;line-height:1.15}
+.do-item p{color:var(--muted);font-size:16px;max-width:30em}
+
+footer{padding:40px 0 44px}
+.contact{font-size:15px;color:var(--muted)}
+.contact a{color:var(--ivory);border-bottom:1px solid var(--line)}
+.contact a:hover{border-bottom-color:var(--sage)}
+
+/* Stack stripe, the deck's palette in order */
+.stack{display:flex;height:10px}
+.stack span{display:block}
+
+/* Responsive */
+@media (max-width:900px){
+  .hero{padding:72px 0 64px}
+  .hero .wrap{grid-template-columns:1fr;gap:40px}
+  .figure{max-width:420px}
+  .do{padding-bottom:80px}
+  .do-grid{grid-template-columns:1fr}
+  .do-item{border-right:0;margin-right:0;padding-right:0;border-bottom:1px solid var(--line);padding-bottom:28px}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <span class="wordmark">Avata</span>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <h1>Avata develops treatments for autoimmune disease using wild hookworm chemistries.</h1>
+        <p class="lede">Bioprospecting the parasites of wild primates to find immune-regulating chemistries for autoimmune therapeutics.</p>
+      </div>
+
+      <div class="figure" aria-hidden="true">
+        <svg viewBox="0 0 560 560" fill="none">
+          <!-- Helminth body in Sun, segmented by Canopy gaps that crawl -->
+          <path d="M30 330 C120 230 170 430 270 320 S410 190 530 300" stroke="#EECC33" stroke-width="18" stroke-linecap="round"/>
+          <path class="crawl" d="M30 330 C120 230 170 430 270 320 S410 190 530 300" stroke="#161C15" stroke-width="18" stroke-dasharray="3 13"/>
+
+          <!-- Connectors from molecules to the body -->
+          <path class="flow" d="M120 186 L146 300" stroke="#EAE0C4" stroke-opacity=".5" stroke-width="1.5"/>
+          <path class="flow" d="M300 150 L268 300" stroke="#EAE0C4" stroke-opacity=".5" stroke-width="1.5"/>
+          <path class="flow" d="M450 186 L405 236" stroke="#EAE0C4" stroke-opacity=".5" stroke-width="1.5"/>
+          <path class="flow" d="M150 452 L146 344" stroke="#EAE0C4" stroke-opacity=".5" stroke-width="1.5"/>
+          <path class="flow" d="M372 440 L414 432" stroke="#EECC33" stroke-width="1.5"/>
+
+          <!-- Molecules: hexagonal rings with substituent bonds -->
+          <g transform="translate(120 150)" stroke="#EAE0C4" stroke-width="1.6">
+            <polygon points="0,-18 15.6,-9 15.6,9 0,18 -15.6,9 -15.6,-9"/>
+            <line x1="15.6" y1="-9" x2="30" y2="-18"/>
+            <circle cx="30" cy="-18" r="3" fill="#EAE0C4"/>
+          </g>
+          <g transform="translate(300 118)" stroke="#EAE0C4" stroke-width="1.6">
+            <polygon points="0,-18 15.6,-9 15.6,9 0,18 -15.6,9 -15.6,-9"/>
+            <line x1="-15.6" y1="9" x2="-30" y2="18"/>
+            <circle cx="-30" cy="18" r="3" fill="#EAE0C4"/>
+            <line x1="0" y1="18" x2="0" y2="34"/>
+          </g>
+          <g transform="translate(450 150)" stroke="#EAE0C4" stroke-width="1.6">
+            <polygon points="0,-18 15.6,-9 15.6,9 0,18 -15.6,9 -15.6,-9"/>
+            <line x1="-15.6" y1="-9" x2="-30" y2="-18"/>
+            <circle cx="-30" cy="-18" r="3" fill="#EAE0C4"/>
+          </g>
+          <g transform="translate(150 470)" stroke="#EAE0C4" stroke-width="1.6">
+            <polygon points="0,-18 15.6,-9 15.6,9 0,18 -15.6,9 -15.6,-9"/>
+            <line x1="15.6" y1="9" x2="30" y2="18"/>
+            <circle cx="30" cy="18" r="3" fill="#EAE0C4"/>
+          </g>
+          <g transform="translate(372 470)" stroke="#EAE0C4" stroke-width="1.6">
+            <polygon points="0,-18 15.6,-9 15.6,9 0,18 -15.6,9 -15.6,-9"/>
+            <line x1="15.6" y1="-9" x2="30" y2="-18"/>
+          </g>
+
+          <!-- Target cell in River, with receptor nubs -->
+          <circle cx="478" cy="440" r="46" fill="#22468A" stroke="#EAE0C4" stroke-opacity=".4" stroke-width="1.5"/>
+          <circle cx="478" cy="440" r="20" fill="#161C15" fill-opacity=".35"/>
+          <g stroke="#EECC33" stroke-width="2.5" stroke-linecap="round">
+            <line x1="478" y1="386" x2="478" y2="372"/>
+            <line x1="524" y1="440" x2="538" y2="440"/>
+            <line x1="432" y1="440" x2="418" y2="440"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="do">
+    <div class="wrap">
+      <div class="do-grid">
+        <div class="do-item">
+          <span class="n">01</span>
+          <h2>Discover</h2>
+          <p>We collect parasites from wild primates in the field and apply cutting-edge analytical methods to understand the chemistries they secrete.</p>
+        </div>
+        <div class="do-item">
+          <span class="n">02</span>
+          <h2>Develop</h2>
+          <p>Promising molecules are synthesized and tested for immune effects, then refined into drug candidates.</p>
+        </div>
+        <div class="do-item">
+          <span class="n">03</span>
+          <h2>Treat</h2>
+          <p>The goal is oral medicines for autoimmune disease, starting with patients who have run out of first-line options.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="stack" aria-hidden="true">
+  <span style="flex:34;background:#F1EDE2"></span>
+  <span style="flex:26;background:#B5B6A3"></span>
+  <span style="flex:20;background:#182421"></span>
+  <span style="flex:30;background:#A93625"></span>
+</div>
+
+<footer>
+  <div class="wrap">
+    <p class="contact">Questions? <a href="mailto:hello@avata.bio">hello@avata.bio</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
